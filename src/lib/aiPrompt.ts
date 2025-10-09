@@ -1,12 +1,12 @@
-import type { Persona, Zona, Abitazione, Capelli, Piatto } from './persona';
+import type { Persona } from './persona';
 
 export function buildPrompt({ nome, persona, zona, abitazione, capelli, piatto }: {
-	nome: string;
-	persona: Persona;
-	zona?: Zona;
-	abitazione?: Abitazione;
-	capelli?: Capelli;
-	piatto?: Piatto;
+    nome: string;
+    persona: Persona;
+    zona?: string;
+    abitazione?: string;
+    capelli?: string;
+    piatto?: string;
 }): string {
 	const title = `${nome || 'Anonimo'} — ${persona}`;
 	const traits = [
