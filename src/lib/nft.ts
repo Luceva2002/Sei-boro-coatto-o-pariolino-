@@ -1,77 +1,89 @@
-export type Pasta = 'rigatoni' | 'spaghetti' | 'fusilli';
-export type Sugo = 'carbonara' | 'gricia' | 'cacio e pepe' | 'amatriciana';
+export type Zone = 'fuori_gra' | 'nord' | 'sud';
+export type Hair = 'ciuffo' | 'doppiotaglio';
+export type Persona = 'bori' | 'pariolini' | 'coatti';
 
-function pastaColor(pasta: Pasta): string {
-  switch (pasta) {
-    case 'rigatoni':
-      return '#f2c66d';
-    case 'spaghetti':
-      return '#f5d58a';
-    case 'fusilli':
-      return '#f1c15c';
+function base64Encode(str: string): string {
+  // Browser path
+  if (typeof globalThis !== 'undefined' && typeof (globalThis as any).btoa === 'function') {
+    // Supporta unicode
+    return (globalThis as any).btoa(unescape(encodeURIComponent(str)));
+  }
+  // Node path
+  // eslint-disable-next-line no-undef
+  return Buffer.from(str, 'utf-8').toString('base64');
+}
+
+export function derivePersona(zone: Zone): Persona {
+  switch (zone) {
+    case 'fuori_gra':
+      return 'bori';
+    case 'nord':
+      return 'pariolini';
+    case 'sud':
+      return 'coatti';
   }
 }
 
-function sauceColor(sugo: Sugo): string {
-  switch (sugo) {
-    case 'carbonara':
-      return '#ffd26e';
-    case 'gricia':
-      return '#d9d9d9';
-    case 'cacio e pepe':
-      return '#cfc6b1';
-    case 'amatriciana':
-      return '#e25b45';
-  }
+function paletteFor(persona: Persona): { bgTop: string; bgBottom: string; face: string; accent: string } {
+  // Palette semplici per ogni archetipo
+  if (persona === 'bori') return { bgTop: '#ffe7cc', bgBottom: '#ffd1a1', face: '#f3e1cf', accent: '#b35c1e' };
+  if (persona === 'pariolini') return { bgTop: '#d7e6ff', bgBottom: '#b7d3ff', face: '#efe7de', accent: '#1e5ab3' };
+  return { bgTop: '#ffd6d6', bgBottom: '#ffb3b3', face: '#f2e6dc', accent: '#b31e1e' }; // coatti
 }
 
-function renderSVG(pasta: Pasta, sugo: Sugo): string {
-  const p = pastaColor(pasta);
-  const s = sauceColor(sugo);
-  const label = `${pasta.toUpperCase()} + ${sugo.toUpperCase()}`;
+function hairShape(hair: Hair, color: string): string {
+  if (hair === 'ciuffo') {
+    return `<path d='M420 320 C 480 260, 560 260, 620 320 C 560 300, 500 300, 460 340' fill='${color}'/>`;
+  }
+  // doppiotaglio
+  return (
+    `<rect x='380' y='320' width='280' height='80' rx='16' fill='${color}'/>` +
+    `<rect x='380' y='320' width='40' height='120' fill='#111' opacity='0.2'/>`
+  );
+}
+
+function renderSVG(name: string, persona: Persona, zone: Zone, hair: Hair): string {
+  const pal = paletteFor(persona);
+  const subtitle = `${persona.toUpperCase()} · ${zone.replace('_', ' ').toUpperCase()} · ${hair.toUpperCase()}`;
   return (
     `<svg xmlns='http://www.w3.org/2000/svg' width='1024' height='1024' viewBox='0 0 1024 1024'>` +
     `<defs>` +
-    `<linearGradient id='g' x1='0' x2='0' y1='0' y2='1'><stop offset='0%' stop-color='#fff'/><stop offset='100%' stop-color='#f7f7f7'/></linearGradient>` +
+    `<linearGradient id='bg' x1='0' x2='0' y1='0' y2='1'><stop offset='0%' stop-color='${pal.bgTop}'/><stop offset='100%' stop-color='${pal.bgBottom}'/></linearGradient>` +
     `</defs>` +
-    `<rect width='100%' height='100%' fill='url(#g)'/>` +
-    `<circle cx='512' cy='600' r='280' fill='#f3f1e8' stroke='#d7d1c1' stroke-width='8'/>` +
+    `<rect width='100%' height='100%' fill='url(#bg)'/>` +
     `<g>` +
-    Array.from({ length: 18 })
-      .map((_, i) => {
-        const angle = (i / 18) * Math.PI * 2;
-        const x = 512 + Math.cos(angle) * 180;
-        const y = 600 + Math.sin(angle) * 120;
-        return `<ellipse cx='${x.toFixed(1)}' cy='${y.toFixed(1)}' rx='40' ry='16' fill='${p}' stroke='#b08a3c' stroke-width='3'/>`;
-      })
-      .join('') +
+    `<circle cx='512' cy='520' r='260' fill='${pal.face}' stroke='#222' stroke-width='6'/>` +
+    hairShape(hair, pal.accent) +
+    // occhi e bocca stilizzati
+    `<circle cx='440' cy='520' r='18' fill='#222'/>` +
+    `<circle cx='584' cy='520' r='18' fill='#222'/>` +
+    `<path d='M430 600 Q 512 640 594 600' stroke='#222' stroke-width='10' fill='none' stroke-linecap='round'/>` +
     `</g>` +
-    `<g opacity='0.9'>` +
-    `<path d='M260 520 C 420 480, 600 560, 760 520' stroke='${s}' stroke-width='26' fill='none' stroke-linecap='round'/>` +
-    `<path d='M240 570 C 420 540, 600 620, 780 570' stroke='${s}' stroke-width='22' fill='none' stroke-linecap='round'/>` +
-    `</g>` +
-    `<text x='50%' y='200' text-anchor='middle' font-size='48' font-family='monospace' fill='#222'>Pasta Maker</text>` +
-    `<text x='50%' y='260' text-anchor='middle' font-size='28' font-family='monospace' fill='#444'>${label}</text>` +
+    `<text x='50%' y='180' text-anchor='middle' font-size='48' font-family='monospace' fill='#111'>${name}</text>` +
+    `<text x='50%' y='230' text-anchor='middle' font-size='26' font-family='monospace' fill='#333'>${subtitle}</text>` +
     `</svg>`
   );
 }
 
-export function generateTokenURI(pasta: Pasta, sugo: Sugo): string {
-  const name = `Pasta: ${pasta} con ${sugo}`;
-  const description = `Una prelibatezza on-chain: ${pasta} con ${sugo}.`;
-  const svg = renderSVG(pasta, sugo);
-  const image = `data:image/svg+xml;base64,${(typeof window === 'undefined' ? Buffer.from(svg, 'utf-8').toString('base64') : btoa(svg))}`;
+export function generateTokenURI(name: string, zone: Zone, hair: Hair): string {
+  const persona = derivePersona(zone);
+  const title = `${name || 'Anonimo'} — ${persona}`;
+  const description = `Personaggio romano: ${persona} dalla zona ${zone.replace('_', ' ')} con ${hair}.`;
+  const svg = renderSVG(name || 'Anonimo', persona, zone, hair);
+  const image = `data:image/svg+xml;base64,${base64Encode(svg)}`;
   const json = {
-    name,
+    name: title,
     description,
     image,
     attributes: [
-      { trait_type: 'Pasta', value: pasta },
-      { trait_type: 'Sugo', value: sugo }
+      { trait_type: 'Nome', value: name || 'Anonimo' },
+      { trait_type: 'Persona', value: persona },
+      { trait_type: 'Zona', value: zone },
+      { trait_type: 'Taglio', value: hair }
     ]
   };
   const meta = JSON.stringify(json);
-  const base64 = typeof window === 'undefined' ? Buffer.from(meta).toString('base64') : btoa(meta);
+  const base64 = base64Encode(meta);
   return `data:application/json;base64,${base64}`;
 }
 

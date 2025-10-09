@@ -2,14 +2,17 @@
 
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { getDefaultConfig, RainbowKitProvider, lightTheme } from '@rainbow-me/rainbowkit';
-import { WagmiProvider } from 'wagmi';
-import { sepolia } from 'viem/chains';
+import { WagmiProvider, createConfig } from 'wagmi';
+import { metaMask } from 'wagmi/connectors';
+import { arbitrumSepolia } from 'viem/chains';
+import { http } from 'viem';
 
-const config = getDefaultConfig({
-  appName: 'Pasta Maker',
-  projectId: process.env.NEXT_PUBLIC_WC_PROJECT_ID ?? 'demo',
-  chains: [sepolia],
+const config = createConfig({
+  chains: [arbitrumSepolia],
+  transports: {
+    [arbitrumSepolia.id]: http('https://sepolia-rollup.arbitrum.io/rpc')
+  },
+  connectors: [metaMask()],
   ssr: true
 });
 
@@ -19,9 +22,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider theme={lightTheme()}>
-          {children}
-        </RainbowKitProvider>
+        {children}
       </QueryClientProvider>
     </WagmiProvider>
   );
