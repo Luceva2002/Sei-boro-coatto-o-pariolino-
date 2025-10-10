@@ -52,7 +52,7 @@ export function StepMint({ risposte, persona }: { risposte: Risposte; persona: s
 	return (
 		<div className="space-y-4 text-center">
 			<img src={dataUrl} alt="Anteprima NFT" className="mx-auto max-w-md w-full rounded-2xl border border-white/20" />
-			<MintButton />
+			<MintButton risposte={risposte} persona={persona} />
 		</div>
 	);
 }

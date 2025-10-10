@@ -1,5 +1,6 @@
 "use client";
 import * as React from 'react';
+import { sdk } from '@farcaster/miniapp-sdk';
 import { useState, useMemo } from 'react';
 import { StepShell } from '../components/step-shell';
 import { StepHero } from '../components/steps/StepHero';
@@ -8,6 +9,10 @@ import { StepMint } from '../components/steps/StepMint';
 import { calcolaPunteggio, type Risposte, questions } from '../lib/persona';
 
 export default function Page() {
+  React.useEffect(() => {
+    // Notifica al MiniApp container che la UI è pronta
+    try { sdk.actions.ready(); } catch {}
+  }, []);
   const total = 1 /*hero*/ + questions.length /*nome+4*/ + 1 /*mint*/;
   const [step, setStep] = useState(0);
   const [risposte, setRisposte] = useState<Risposte>({ nome: '' });
