@@ -99,6 +99,7 @@ src/
 ### Guide Setup
 - [Setup WalletConnect](./WALLETCONNECT_SETUP.md) - Come ottenere il Project ID gratuito
 - [Setup MiniApp](./MINIAPP_SETUP.md) - Deploy come MiniApp su Base Build
+- [Configurazione Vercel](./VERCEL_ENV_SETUP.md) - Come configurare le env vars su Vercel
 
 ### Documentazione Esterna
 - [Documentazione Farcaster Frames](https://docs.farcaster.xyz/developers/frames/spec)

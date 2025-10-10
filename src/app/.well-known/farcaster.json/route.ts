@@ -2,9 +2,9 @@ export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://nfturbe.app';
   const manifest = {
     accountAssociation: {
-      header: process.env.ACCOUNT_ASSOC_HEADER || '',
-      payload: process.env.ACCOUNT_ASSOC_PAYLOAD || '',
-      signature: process.env.ACCOUNT_ASSOC_SIGNATURE || ''
+      header: process.env.ACCOUNT_ASSOC_HEADER || 'eyJmaWQiOjEzNzQ5MjIsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHg5MEQ1N0M5ODkxODQ5YTFlMWMzMTY1NDY0MTljNzhCODYyMDQ1REEwIn0',
+      payload: process.env.ACCOUNT_ASSOC_PAYLOAD || 'eyJkb21haW4iOiJuZnQtdXJiZS52ZXJjZWwuYXBwIn0',
+      signature: process.env.ACCOUNT_ASSOC_SIGNATURE || 'MHg5ZDhmOGFkMDc5NjRmOTRiMWJlZTE1NDcyYjNmMzQ3NjJhMjgzZWFiMTllZTkzZWZkMmE4YjM2NzdkZmU2YTlkNGU1MWNkYmNiZWE0MzM3ZDQ3OTliNTIyMGViZThkMTNkN2VjY2Y2YWJhNGQxMzlmNWIyNmI5ZjA5ZDViZDk4YTFj'
     },
     baseBuilder: {
       allowedAddresses: (process.env.BASE_ALLOWED_ADDRESSES || '').split(',').filter(Boolean)
