@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Providers from '../components/Providers';
+import { DevWarnings } from '../components/DevWarnings';
 import '../styles/globals.css';
 
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://nfturbe.app';
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Providers>
           {children}
         </Providers>
+        <DevWarnings />
       </body>
     </html>
   );

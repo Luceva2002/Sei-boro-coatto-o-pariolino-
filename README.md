@@ -46,8 +46,11 @@ Crea un file `.env.local` nella root del progetto:
 ```bash
 NEXT_PUBLIC_CONTRACT_ADDRESS=0x1C9E05B29134233e19fbd0FE27400F5FFFc3737e
 NEXT_PUBLIC_APP_URL=http://localhost:5173
-NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=ottienilo-da-walletconnect
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=ottieni-project-id-gratuito
 ```
+
+⚠️ **Importante**: Per usare wallet mobili, devi ottenere un **Project ID gratuito** da WalletConnect.
+Senza questo, vedrai errori 403 in console. Leggi la guida: [WALLETCONNECT_SETUP.md](./WALLETCONNECT_SETUP.md)
 
 ## 📦 Deploy
 
@@ -93,6 +96,11 @@ src/
 
 ## 🔗 Link Utili
 
+### Guide Setup
+- [Setup WalletConnect](./WALLETCONNECT_SETUP.md) - Come ottenere il Project ID gratuito
+- [Setup MiniApp](./MINIAPP_SETUP.md) - Deploy come MiniApp su Base Build
+
+### Documentazione Esterna
 - [Documentazione Farcaster Frames](https://docs.farcaster.xyz/developers/frames/spec)
 - [Farcaster MiniApp Docs](https://docs.farcaster.xyz/developers/miniapps)
 - [Base Build](https://www.base.dev/)
