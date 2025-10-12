@@ -31,9 +31,9 @@ declare namespace __next_route_internal_types__ {
   type StaticRoutes = 
     | `/`
     | `/.well-known/farcaster.json`
-    | `/frame`
     | `/api/frame`
     | `/api/frame/image`
+    | `/frame`
   type DynamicRoutes<T extends string = string> = 
     | `/api/metadata/${SafeSlug<T>}`
     | `/api/nft/${SafeSlug<T>}`
