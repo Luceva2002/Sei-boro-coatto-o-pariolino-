@@ -7,6 +7,7 @@ export function StepCapelli({ capelli, setCapelli }: { capelli?: string; setCape
     return (
         <div className="space-y-3">
             <br />
+            <br />
             <div className="grid grid-cols-2 gap-3">
                 {getOptions('capelli').map(o => (
                     <Button key={o.value} variant={capelli===o.value? 'default':'outline'} onClick={()=>setCapelli(o.value)}>

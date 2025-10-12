@@ -20,25 +20,27 @@ export const questions: Question[] = [
 	{ id: "nome", label: "Come te chiami?", type: "text" },
 	{
 		id: "zona",
-		label: "Che zona de Roma frequenti?",
+		label: "De che zona sei?",
 		type: "select",
 		options: [
-			{ value: "centro", label: "Centro storico", weight: { boro: 0, pariolino: 2, coatto: 0 } },
-			{ value: "nord", label: "Roma Nord", weight: { boro: 1, pariolino: 3, coatto: 0 } },
-			{ value: "est", label: "Tiburtina/Prenestina", weight: { boro: 2, pariolino: 0, coatto: 2 } },
-			{ value: "sud", label: "Garbatella/Ostiense", weight: { boro: 1, pariolino: 0, coatto: 2 } },
-			{ value: "periferia", label: "Periferia/Anello esterno", weight: { boro: 3, pariolino: 0, coatto: 2 } }
+			{ value: "roma_centro", label: "Roma Centro", weight: { boro: 2, pariolino: 1, coatto: 0 } },
+			{ value: "roma_nord", label: "Roma Nord", weight: { boro: 0, pariolino: 2, coatto: 0 } },
+			{ value: "roma_ovest", label: "Roma Ovest e dintorni", weight: { boro: 2, pariolino: 1, coatto: 0 } },
+			{ value: "roma_est", label: "Da Pignetown a Anagnina", weight: { boro: 1, pariolino: 0, coatto: 2 } },
+			{ value: "roma_sud", label: "Eur Garba e zone lì", weight: { boro: 0, pariolino: 0, coatto: 2 } },
+			{ value: "fuori_gra", label: "Fuori dar gra", weight: { boro: 2, pariolino: 0, coatto: 0 } }
 		]
 	},
 	{
 		id: "abitazione",
-		label: "Dove abiti?",
+		label: "Casa tua:",
 		type: "select",
 		options: [
-			{ value: "attico", label: "Attico vista cupole", weight: { boro: 0, pariolino: 3, coatto: 0 } },
-			{ value: "palazzina", label: "Palazzina anni ‘70", weight: { boro: 2, pariolino: 0, coatto: 1 } },
-			{ value: "villa", label: "Villino con giardino", weight: { boro: 0, pariolino: 2, coatto: 1 } },
-			{ value: "casa_pop", label: "Case popolari", weight: { boro: 3, pariolino: 0, coatto: 2 } }
+			{ value: "attico_naamio", label: "Attico naamio", weight: { boro: 0, pariolino: 2, coatto: 0 } },
+			{ value: "palazzina_70", label: "Palazzina anni '70", weight: { boro: 2, pariolino: 0, coatto: 0 } },
+			{ value: "villino_giardino", label: "Villino con giardino", weight: { boro: 1, pariolino: 2, coatto: 0 } },
+			{ value: "palazzoni", label: "Palazzoni", weight: { boro: 0, pariolino: 0, coatto: 2 } },
+			{ value: "casa_popolare", label: "Casa popolare", weight: { boro: 0, pariolino: 0, coatto: 2 } }
 		]
 	},
 	{
@@ -46,21 +48,24 @@ export const questions: Question[] = [
 		label: "Taglio de capelli?",
 		type: "select",
 		options: [
-			{ value: "sfumato", label: "Sfumato barbiere di fiducia", weight: { boro: 2, pariolino: 1, coatto: 2 } },
-			{ value: "pulito", label: "Pulito, riga laterale", weight: { boro: 0, pariolino: 3, coatto: 0 } },
-			{ value: "ricci", label: "Ricci scomposti", weight: { boro: 1, pariolino: 1, coatto: 1 } },
-			{ value: "cresta", label: "Cresta/gel fisso", weight: { boro: 2, pariolino: 0, coatto: 3 } }
+			{ value: "doppio_taglio", label: "Doppio taglio", weight: { boro: 2, pariolino: 0, coatto: 0 } },
+			{ value: "ciuffo", label: "Ciuffo", weight: { boro: 0, pariolino: 2, coatto: 0 } },
+			{ value: "er_boccia", label: "Sei er boccia", weight: { boro: 2, pariolino: 0, coatto: 1 } },
+			{ value: "isolotto", label: "Isolotto", weight: { boro: 0, pariolino: 0, coatto: 2 } },
+			{ value: "codino_alto", label: "Codino alto", weight: { boro: 1, pariolino: 0, coatto: 2 } },
+			{ value: "piega_liscia", label: "Piega liscia", weight: { boro: 0, pariolino: 2, coatto: 0 } }
 		]
 	},
 	{
 		id: "piatto",
-		label: "Piatto preferito?",
+		label: "Top magnata?",
 		type: "select",
 		options: [
-			{ value: "carbonara", label: "Carbonara", weight: { boro: 2, pariolino: 1, coatto: 2 } },
-			{ value: "cacio", label: "Cacio e pepe", weight: { boro: 1, pariolino: 2, coatto: 1 } },
-			{ value: "sushi", label: "Sushi", weight: { boro: 0, pariolino: 3, coatto: 0 } },
-			{ value: "kebab", label: "Kebab de notte", weight: { boro: 2, pariolino: 0, coatto: 3 } }
+			{ value: "cucina_romana", label: "Cucina romana", weight: { boro: 2, pariolino: 0, coatto: 1 } },
+			{ value: "ape", label: "Ape", weight: { boro: 1, pariolino: 2, coatto: 0 } },
+			{ value: "sushi", label: "Sushi", weight: { boro: 0, pariolino: 2, coatto: 0 } },
+			{ value: "kebab_notte", label: "Kebab de notte", weight: { boro: 0, pariolino: 0, coatto: 2 } },
+			{ value: "pizza_trancio", label: "Pizza ar taglio", weight: { boro: 2, pariolino: 0, coatto: 0 } }
 		]
 	}
 ];
@@ -84,14 +89,14 @@ export function scoreForm(form: Record<string,string>) {
 	return { ...s, label };
 }
 
-export const personaCopy: Record<string,string> = {
-	"boro": "Boro DOC: cuore grande, zero fronzoli, romano verace.",
-	"pariolino": "Pariolino/a chic: linee pulite, gusto fino e aperitivi al tramonto.",
-	"coatto": "Coatto/a epico/a: energia a pallettoni, battuta pronta sempre.",
-	"boro-pariolino mix": "Mix raro: street + finezza, come la carbonara gourmet.",
-	"boro-coatto mix": "Tempra de quartiere con turbo, stile senza filtri.",
-	"pariolino-coatto mix": "Elegantemente spinto: mocassino e motorino insieme."
-};
+export const personaCopy: Record<string, string> = {
+	"boro": "Boro autentico: diretto, verace e senza filtri. Vivi Roma come un campo da calcetto e l’amicizia come un sacramento.",
+	"pariolino": "Pariolino di razza: estetica curata, Spritz sempre pieno e convinzione che la vita inizi a Ponte Milvio.",
+	"coatto": "Coatto leggendario: un concentrato de romanità e rumore. Parli col cuore e cammini come se stessi sempre girando un video musicale.",
+	"boro-pariolino mix": "Pariolino col cuore da boro: scarpe lucide ma battuta pronta. C’hai classe e panino con la porchetta insieme.",
+	"boro-coatto mix": "Coatto zen: te scazzi con chiunque ma poi mediti sul raccordo. Sei caos organizzato e pace interiore in tuta Adidas.",
+	"pariolino-coatto mix": "Boro soft-touch: sembri tranquillo, ma bastano due battute e diventi un meme vivente. L’equilibrio perfetto tra eleganza e casino."
+  };
 
 // Helpers per accedere alle domande/opzioni
 export function getQuestion(id: string): Question | undefined {

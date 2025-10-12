@@ -8,15 +8,15 @@ export function StepQuestion({ id, value, onChange }: { id: string; value?: stri
 	const q = getQuestion(id);
 	if (!q) return null;
 	return (
-		<div className="space-y-3">
+		<div className="space-y-4">
 			{q.type === 'text' ? (
-				<div className="space-y-3">
-					<Input value={value || ''} onChange={e=>onChange(e.target.value)} placeholder={q.label} />
+				<div className="space-y-3 flex justify-center">
+					<Input value={value || ''} onChange={e=>onChange(e.target.value)} placeholder={q.label} className="max-w-md" />
 				</div>
 			) : (
-				<div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+				<div className="grid grid-cols-2 gap-4 justify-items-center">
 					{getOptions(id).map(o => (
-						<Button key={o.value} variant={value===o.value? 'default':'outline'} onClick={()=>onChange(o.value)}>
+						<Button key={o.value} variant={value===o.value? 'default':'outline'} onClick={()=>onChange(o.value)} className="w-full">
 							{o.label}
 						</Button>
 					))}

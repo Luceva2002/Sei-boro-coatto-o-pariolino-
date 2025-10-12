@@ -25,7 +25,7 @@ export default function Page() {
   return (
     <main className="mx-auto max-w-5xl py-10">
       {step === 0 ? (
-        <StepShell title="" step={0} total={total} onNext={next}>
+        <StepShell title="" step={0} total={total}>
           <StepHero onStart={next} />
         </StepShell>
       ) : null}
@@ -37,7 +37,7 @@ export default function Page() {
       ) : null}
 
       {step === (1 + questions.length) ? (
-        <StepShell title="Immagine & Mint" step={step} total={total} onBack={back}>
+        <StepShell title="Immagine & Mint" step={step} total={total} onBack={back} showWallet={true}>
           <StepMint risposte={risposte} persona={persona} />
         </StepShell>
       ) : null}

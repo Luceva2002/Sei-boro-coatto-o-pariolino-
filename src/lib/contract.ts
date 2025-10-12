@@ -1,10 +1,11 @@
 import type { Abi } from 'viem';
-import ABI_JSON from '../../smart-contract.json';
+import ABI_JSON from '../../contracts/RomanPersonaNFT.abi.json';
 
-// Indirizzo contratto su Sepolia (fallback a quello fornito)
-export const CONTRACT_ADDRESS = (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || '0x1C9E05B29134233e19fbd0FE27400F5FFFc3737e') as `0x${string}`;
+// Indirizzo contratto RomanPersonaNFT
+// Aggiornato con il nuovo contratto deployato
+export const CONTRACT_ADDRESS = '0xfd40710B7D9ef3351Ea3891aA1Aa22BAEF9072B3' as `0x${string}`;
 
-// ABI reale del contratto importato da smart-contract.json
+// ABI del nuovo contratto RomanPersonaNFT
 export const CONTRACT_ABI = ABI_JSON as unknown as Abi;
 
 

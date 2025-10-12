@@ -11,6 +11,7 @@ export function StepShell({
 	total,
 	onBack,
 	onNext,
+	showWallet,
 	children
 }: {
 	title: string;
@@ -19,32 +20,41 @@ export function StepShell({
 	total: number;
 	onBack?: () => void;
 	onNext?: () => void;
+	showWallet?: boolean;
 	children: React.ReactNode;
 }) {
 	const pct = Math.round(((step+1)/total)*100);
 	return (
-		<div className="relative mx-auto max-w-3xl p-4 sm:p-6 pb-28">
-			{/* Wallet in alto a sinistra */}
-			<div className="fixed top-4 left-4 z-20">
-				<WalletButton />
+		<div className="relative mx-auto max-w-2xl px-4 sm:px-6 pb-32">
+			{/* Contenuto centrato per mobile */}
+			<div className="flex flex-col items-center justify-center min-h-[60vh]">
+				<h2 className="text-2xl font-semibold mb-6 text-center">{title}</h2>
+				{description ? <p className="text-white/80 mb-6 text-center">{description}</p> : null}
+				<div className="w-full max-w-xl">{children}</div>
 			</div>
 
-			{/* Contenuto senza glass */}
-			<h2 className="text-2xl font-semibold mb-3 text-center">{title}</h2>
-			{description ? <p className="text-white/80 mb-6 text-center">{description}</p> : null}
-			<div className="min-h-[280px]">{children}</div>
-
-			{/* Bottoni fissi in basso */}
-			{onBack ? (
-				<div className="fixed left-4 bottom-16 z-20">
-					<Button variant="outline" onClick={onBack}>Indietro</Button>
+			{/* Bottoni centrati sotto il quiz + Wallet a destra */}
+			{(onBack || onNext || showWallet) && (
+				<div className="fixed left-0 right-0 bottom-16 z-20 flex justify-center items-center gap-4 px-4">
+					<div className="flex gap-4 items-center">
+						{onBack && (
+							<Button variant="outline" onClick={onBack} className="min-w-[120px]">
+								Indietro
+							</Button>
+						)}
+						{onNext && (
+							<Button onClick={onNext} className="min-w-[120px]">
+								Avanti
+							</Button>
+						)}
+						{showWallet && (
+							<div className="ml-2">
+								<WalletButton />
+							</div>
+						)}
+					</div>
 				</div>
-			) : null}
-			{onNext ? (
-				<div className="fixed right-4 bottom-16 z-20">
-					<Button onClick={onNext}>Avanti</Button>
-				</div>
-			) : null}
+			)}
 
 			{/* Barra di progresso in fondo */}
 			<div className="fixed left-0 right-0 bottom-0 z-10 p-3">

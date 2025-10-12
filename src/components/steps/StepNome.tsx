@@ -6,6 +6,8 @@ export function StepNome({ nome, setNome }: { nome: string; setNome: (v: string)
 	return (
 		<div className="space-y-3">
 			<br />
+			<br />
+			<br />
 			<Input value={nome} onChange={e=>setNome(e.target.value)} placeholder="Inserisci il nome" />
 		</div>
 	);

@@ -29,35 +29,12 @@ export function MintButton({ risposte, persona }: MintButtonProps) {
 		}
 		
 		try {
-			// Mappo il piatto in pastaType e sauce
-			const piatto = risposte.piatto || 'carbonara';
-			let pastaType = 'spaghetti';
-			let sauce = piatto;
-			
-			switch(piatto) {
-				case 'carbonara':
-					pastaType = 'rigatoni';
-					sauce = 'carbonara';
-					break;
-				case 'cacio':
-					pastaType = 'tonnarelli';
-					sauce = 'cacio e pepe';
-					break;
-				case 'sushi':
-					pastaType = 'riso';
-					sauce = 'soia';
-					break;
-				case 'kebab':
-					pastaType = 'pita';
-					sauce = 'piccante';
-					break;
-			}
-			
+			// Il nuovo contratto ha una funzione mint() semplificata senza parametri
 			writeContract({
 				address: CONTRACT_ADDRESS,
 				abi: CONTRACT_ABI,
 				functionName: 'mint',
-				args: [pastaType, sauce]
+				args: []
 			});
 		} catch (err) {
 			console.error('Errore mint:', err);
