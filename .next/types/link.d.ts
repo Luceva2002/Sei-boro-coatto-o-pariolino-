@@ -29,10 +29,10 @@ declare namespace __next_route_internal_types__ {
     S extends `${string}${SearchOrHash}` ? never : S
 
   type StaticRoutes = 
-    | `/`
+    | `/api/frame/image`
     | `/.well-known/farcaster.json`
     | `/api/frame`
-    | `/api/frame/image`
+    | `/`
     | `/frame`
   type DynamicRoutes<T extends string = string> = 
     | `/api/metadata/${SafeSlug<T>}`
