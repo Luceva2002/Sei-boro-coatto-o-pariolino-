@@ -1,6 +1,6 @@
 {
-  "name": "my-bc-app",
-  "version": "0.1.0",
+  "name": "boro-coatto-pariolino",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 5173",
