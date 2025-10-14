@@ -86,6 +86,9 @@ contract RomanPersonaNFT is ERC721, ERC721URIStorage, Ownable {
         // Descrizione personalizzata in base alla persona
         string memory description = getPersonaDescription(metadata.persona);
         
+        // URL dell'immagine in base alla persona
+        string memory imageUrl = getPersonaImageUrl(metadata.persona);
+        
         // Costruisce il JSON dei metadati
         string memory json = string(
             abi.encodePacked(
@@ -95,6 +98,8 @@ contract RomanPersonaNFT is ERC721, ERC721URIStorage, Ownable {
                 metadata.persona,
                 '", "description": "',
                 description,
+                '", "image": "',
+                imageUrl,
                 '", "attributes": [',
                 '{"trait_type": "Persona", "value": "',
                 metadata.persona,
@@ -146,6 +151,27 @@ contract RomanPersonaNFT is ERC721, ERC721URIStorage, Ownable {
             return "Boro soft-touch: sembra tranquillo, ma bastano due battute e diventa un meme vivente.";
         } else {
             return "Una persona romana autentica con un mix unico di caratteristiche.";
+        }
+    }
+    
+    /**
+     * @dev Ritorna l'URL dell'immagine in base all'indole
+     */
+    function getPersonaImageUrl(string memory persona) internal pure returns (string memory) {
+        bytes32 personaHash = keccak256(abi.encodePacked(persona));
+        
+        // Base URL di Vercel
+        string memory baseUrl = "https://boro-coatto-pariolino.vercel.app";
+        
+        if (personaHash == keccak256(abi.encodePacked("boro"))) {
+            return string(abi.encodePacked(baseUrl, "/Boro.png"));
+        } else if (personaHash == keccak256(abi.encodePacked("pariolino"))) {
+            return string(abi.encodePacked(baseUrl, "/Pariolino.png"));
+        } else if (personaHash == keccak256(abi.encodePacked("coatto"))) {
+            return string(abi.encodePacked(baseUrl, "/Coatto.png"));
+        } else {
+            // Per i mix, usa l'immagine del tipo dominante o un'immagine di default
+            return string(abi.encodePacked(baseUrl, "/placeholder.png"));
         }
     }
     
