@@ -3,9 +3,9 @@ export async function GET() {
 
   const manifest = {
     accountAssociation: {
-      "header": "eyJmaWQiOjEzNzQ5MjIsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHg5MEQ1N0M5ODkxODQ5YTFlMWMzMTY1NDY0MTljNzhCODYyMDQ1REEwIn0",
-      "payload": "eyJkb21haW4iOiJuZnQtdXJiZS52ZXJjZWwuYXBwIn0",
-      "signature": "MHg5ZDhmOGFkMDc5NjRmOTRiMWJlZTE1NDcyYjNmMzQ3NjJhMjgzZWFiMTllZTkzZWZkMmE4YjM2NzdkZmU2YTlkNGU1MWNkYmNiZWE0MzM3ZDQ3OTliNTIyMGViZThkMTNkN2VjY2Y2YWJhNGQxMzlmNWIyNmI5ZjA5ZDViZDk4YTFj"
+      "header": "eyJmaWQiOjEzNzQ5MjIsInR5cGUiOiJhdXRoIiwia2V5IjoiMHhFNDJkNzUyODI1NjVCYUU3QTdhYkFCOWVBRmNlODU4MDI0RjU1MDljIn0",
+      "payload": "eyJkb21haW4iOiJib3JvLWNvYXR0by1wYXJpb2xpbm8udmVyY2VsLmFwcCJ9",
+      "signature": "OmKUUhGPY6TOnJUrcMbcl1NEz8Bb1EetMgUf6fioYEM18c2H0Ps7trJnq+HBd6QhlWfs3EVSWUyOtmNpyeDF+hs="
      },
     baseBuilder: {
       allowedAddresses: (process.env.BASE_ALLOWED_ADDRESSES || '').split(',').filter(Boolean)
