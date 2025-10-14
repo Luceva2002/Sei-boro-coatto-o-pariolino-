@@ -1,5 +1,5 @@
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://nfturbe.app';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://boro-coatto-pariolino.vercel.app';
 
   const manifest = {
     accountAssociation: {

@@ -4,7 +4,7 @@ import Providers from '../components/Providers';
 import { DevWarnings } from '../components/DevWarnings';
 import '../styles/globals.css';
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://nfturbe.app';
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://boro-coatto-pariolino.vercel.app';
 
 export const metadata: Metadata = {
   title: 'NFT Urbe Roma - Personaggio Romano',
@@ -19,21 +19,9 @@ export const metadata: Metadata = {
     'fc:frame:image': `${baseUrl}/api/frame/image?step=hero`,
     'fc:frame:button:1': '🚀 Scopri il tuo archetipo',
     'fc:frame:post_url': `${baseUrl}/api/frame`,
-    'fc:miniapp': JSON.stringify({
-      version: 'next',
-      imageUrl: `${baseUrl}/api/frame/image?step=hero`,
-      button: {
-        title: 'Launch NFT Urbe',
-        action: {
-          type: 'launch_miniapp',
-          name: 'NFT Urbe Roma',
-          url: baseUrl,
-          splashImageUrl: `${baseUrl}/sfondo1.png`,
-          splashBackgroundColor: '#000000'
-        }
-      }
-    })
+    'og:image': `${baseUrl}/sfondo.png`,
   },
+  manifest: `${baseUrl}/.well-known/farcaster.json`,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
