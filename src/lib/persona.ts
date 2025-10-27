@@ -37,9 +37,9 @@ export const questions: Question[] = [
 		type: "select",
 		options: [
 			{ value: "attico_naamio", label: "Attico naamio", weight: { boro: 0, pariolino: 2, coatto: 0 } },
-			{ value: "palazzina_70", label: "Palazzina anni '70", weight: { boro: 2, pariolino: 0, coatto: 0 } },
+			{ value: "palazzina_70", label: "Classico condominio", weight: { boro: 2, pariolino: 0, coatto: 0 } },
 			{ value: "villino_giardino", label: "Villino con giardino", weight: { boro: 1, pariolino: 2, coatto: 0 } },
-			{ value: "palazzoni", label: "Palazzoni", weight: { boro: 0, pariolino: 0, coatto: 2 } },
+			{ value: "palazzoni", label: "Lotti", weight: { boro: 0, pariolino: 0, coatto: 2 } },
 			{ value: "casa_popolare", label: "Casa popolare", weight: { boro: 0, pariolino: 0, coatto: 2 } }
 		]
 	},
@@ -52,7 +52,7 @@ export const questions: Question[] = [
 			{ value: "ciuffo", label: "Ciuffo", weight: { boro: 0, pariolino: 2, coatto: 0 } },
 			{ value: "er_boccia", label: "Sei er boccia", weight: { boro: 2, pariolino: 0, coatto: 1 } },
 			{ value: "isolotto", label: "Isolotto", weight: { boro: 0, pariolino: 0, coatto: 2 } },
-			{ value: "codino_alto", label: "Codino alto", weight: { boro: 1, pariolino: 0, coatto: 2 } },
+			{ value: "codino_alto", label: "Ricci scomposti", weight: { boro: 1, pariolino: 0, coatto: 2 } },
 			{ value: "piega_liscia", label: "Piega liscia", weight: { boro: 0, pariolino: 2, coatto: 0 } }
 		]
 	},
@@ -61,7 +61,7 @@ export const questions: Question[] = [
 		label: "Top magnata?",
 		type: "select",
 		options: [
-			{ value: "cucina_romana", label: "Cucina romana", weight: { boro: 2, pariolino: 0, coatto: 1 } },
+			{ value: "cucina_romana", label: "Osteria romana", weight: { boro: 2, pariolino: 0, coatto: 1 } },
 			{ value: "ape", label: "Ape", weight: { boro: 1, pariolino: 2, coatto: 0 } },
 			{ value: "sushi", label: "Sushi", weight: { boro: 0, pariolino: 2, coatto: 0 } },
 			{ value: "kebab_notte", label: "Kebab de notte", weight: { boro: 0, pariolino: 0, coatto: 2 } },
