@@ -1,12 +1,24 @@
-"use client";
+t "use client";
 import * as React from 'react';
-import { useAccount, useConnect, useDisconnect } from 'wagmi';
+import { useAccount, useConnect, useDisconnect, useChainId, useSwitchChain } from 'wagmi';
+import { base } from 'viem/chains';
 
 export function WalletButton() {
 	const { isConnected, address } = useAccount();
 	const { connect, connectors, isPending } = useConnect();
 	const { disconnect } = useDisconnect();
+	const chainId = useChainId();
+	const { switchChain } = useSwitchChain();
 	const [showModal, setShowModal] = React.useState(false);
+
+	// Se già connessi ma su chain diversa, prova a passare a Base
+	React.useEffect(() => {
+		if (isConnected && chainId && chainId !== base.id) {
+			try {
+				switchChain({ chainId: base.id });
+			} catch {}
+		}
+	}, [isConnected, chainId, switchChain]);
 	
 	if (isConnected) {
 		return (
@@ -32,20 +44,58 @@ export function WalletButton() {
 					<div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 max-w-md w-full border border-white/20" onClick={e => e.stopPropagation()}>
 						<h3 className="text-xl font-bold mb-4 text-white">Connetti Wallet</h3>
 						<div className="space-y-2">
-							{connectors.map((connector) => (
-								<button
-									key={connector.id}
-									onClick={() => {
-										connect({ connector });
-										setShowModal(false);
-									}}
-									disabled={isPending}
-									className="w-full h-12 px-4 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 inline-flex items-center gap-3 text-white transition-colors"
-								>
-									<img src="/metamask.png" alt={connector.name} className="h-6 w-6" />
-									<span>{connector.name}</span>
-								</button>
-							))}
+							{(() => {
+								const metamask = connectors.find(c => c.id === 'metaMask' || c.id === 'injected' || c.name?.toLowerCase().includes('metamask'));
+								const coinbase = connectors.find(c => c.id === 'coinbaseWallet' || c.name?.toLowerCase().includes('coinbase'));
+								const walletConnect = connectors.find(c => c.id === 'walletConnect' || c.name?.toLowerCase().includes('walletconnect'));
+
+								return (
+									<>
+										{metamask && (
+											<button
+												key="metamask"
+												onClick={() => {
+													connect({ connector: metamask, chainId: base.id });
+													setShowModal(false);
+												}}
+												disabled={isPending}
+												className="w-full h-12 px-4 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 inline-flex items-center gap-3 text-white transition-colors"
+											>
+												<img src="/metamask.png" alt="MetaMask" className="h-6 w-6" />
+												<span>MetaMask</span>
+											</button>
+										)}
+
+										{coinbase && (
+											<button
+												key="coinbase"
+												onClick={() => {
+													connect({ connector: coinbase, chainId: base.id });
+													setShowModal(false);
+												}}
+												disabled={isPending}
+												className="w-full h-12 px-4 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 inline-flex items-center gap-3 text-white transition-colors"
+											>
+												<span>Coinbase Wallet (Base)</span>
+											</button>
+										)}
+
+										{walletConnect && (
+											<button
+												key="farcaster"
+												onClick={() => {
+													connect({ connector: walletConnect, chainId: base.id });
+													setShowModal(false);
+												}}
+												disabled={isPending}
+												className="w-full h-12 px-4 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 inline-flex items-center gap-3 text-white transition-colors"
+											>
+												<span>Farcaster (WalletConnect)</span>
+											</button>
+										)}
+									</>
+								);
+							})()}
 						</div>
 						<button 
 							onClick={() => setShowModal(false)} 

@@ -7,10 +7,10 @@ import '../styles/globals.css';
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://boro-coatto-pariolino.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'NFT Urbe Roma - Personaggio Romano',
+  title: 'Boro, Coatto o Pariolino?',
   description: 'Scopri che tipo di romano sei e minta il tuo NFT personalizzato. Boro, Pariolino o Coatto?',
   openGraph: {
-    title: 'NFT Urbe Roma',
+    title: 'Boro, Coatto o Pariolino?',
     description: 'Scopri che tipo di romano sei e minta il tuo NFT personalizzato',
     images: [`${baseUrl}/sfondo.png`],
   },

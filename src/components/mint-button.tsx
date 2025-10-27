@@ -79,7 +79,7 @@ export function MintButton({ risposte, persona }: MintButtonProps) {
 			disabled={!isConnected || isPending}
 			className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
 		>
-			{isPending ? '⏳ Firmando transazione...' : isConnected ? '🎨 Mint NFT' : '⚠️ Connetti Wallet'}
+			{isPending ? '⏳ Firmando transazione...' : isConnected ? '🎨 Procede Mint NFT' : '⚠️ Connetti Wallet'}
 		</Button>
 	);
 }
